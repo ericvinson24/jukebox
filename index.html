@@ -134,7 +134,8 @@ select{cursor:pointer;padding-right:2rem;background-image:url("data:image/svg+xm
       - Paste your key below for album bio auto-fill.
 ══════════════════════════════════════════════════════════════════════════ */
 const SHEET_CSV_URL  = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRbUvfFmkyWaYx0y5oQnC1gDSJ61W6iSPEq8hhnPtOi59lWjfAe5NRkHAZzl7t2rRB-AH1qo0qSXO-D/pub?gid=0&single=true&output=csv';
-const LASTFM_API_KEY = 'YOUR_LASTFM_API_KEY_HERE';
+const LASTFM_API_KEY = '350a3fcc217493055faabeb1240991f4';
+const DISCOGS_TOKEN = 'pOyVZNGcSuPsoTmGjMvrrGLkmWwJHQgexSXxSObx';
 
 const SAMPLE_RECORDS = [
   {artist:"Miles Davis",      album:"Kind of Blue",                    genre:"Jazz",        year:1959, notes:"The definitive jazz record. Side A never gets old."},
@@ -264,16 +265,20 @@ async function fetchArt(artist, album) {
   if (artCache[key] !== undefined) return artCache[key];
   artCache[key] = null;
   try {
-    const q = encodeURIComponent(`release:"${album}" artist:"${artist}"`);
-    const res = await fetch(`https://musicbrainz.org/ws/2/release/?query=${q}&fmt=json&limit=5`,
-      {headers:{'User-Agent':'VinylBrowser/1.0'}});
+    const cleanArtist = artist.split('/')[0].split(' & ')[0].trim();
+    const q = encodeURIComponent(cleanArtist + ' ' + album);
+    const res = await fetch(
+      'https://api.discogs.com/database/search?q=' + q + '&type=release&per_page=3&token=' + DISCOGS_TOKEN,
+      {headers:{'User-Agent':'CatJukebox/1.0'}}
+    );
     if (!res.ok) return null;
     const data = await res.json();
-    for (const rel of (data.releases||[])) {
-      try {
-        const img = await fetch(`https://coverartarchive.org/release/${rel.id}/front-250`,{redirect:'follow'});
-        if (img.ok) { artCache[key] = img.url; return img.url; }
-      } catch { continue; }
+    const results = data.results || [];
+    for (const r of results) {
+      if (r.cover_image && !r.cover_image.includes('spacer')) {
+        artCache[key] = r.cover_image;
+        return r.cover_image;
+      }
     }
   } catch {}
   return null;
