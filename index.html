@@ -29,8 +29,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);m
 .random-strip{background:var(--accent-soft);border-bottom:1px solid #DFC5BB;padding:0.8rem 2.5rem;display:flex;align-items:center;gap:0.75rem;flex-wrap:wrap}
 .random-label{font-family:'DM Mono',monospace;font-size:0.72rem;color:var(--accent);text-transform:uppercase;letter-spacing:0.08em;display:flex;align-items:center;gap:0.35rem}
 
-/* ROLS */
-.rols{background:var(--surface);border-bottom:1px solid var(--border);padding:1rem 2.5rem;display:flex;gap:0.6rem;flex-wrap:wrap;align-items:center}
+/* CONTROLS */
+.controls{background:var(--surface);border-bottom:1px solid var(--border);padding:1rem 2.5rem;display:flex;gap:0.6rem;flex-wrap:wrap;align-items:center}
 .search-wrap{position:relative;flex:1;min-width:200px}
 .search-wrap .ti{position:absolute;left:0.75rem;top:50%;transform:translateY(-50%);font-size:15px;color:var(--muted);pointer-events:none}
 input[type="text"],select{font-family:'DM Sans',sans-serif;font-size:0.875rem;color:var(--ink);background:var(--card-bg);border:1px solid var(--border);border-radius:7px;padding:0.55rem 0.8rem;outline:none;transition:border-color 0.15s;-webkit-appearance:none;appearance:none}
@@ -52,7 +52,7 @@ select{cursor:pointer;padding-right:2rem;background-image:url("data:image/svg+xm
 @keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 .card:hover{transform:translateY(-4px);box-shadow:0 12px 32px var(--shadow)}
 .card:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-.card-art{width:100%;aspect-ratio:1/1;background:var(--tag-bg);display:flex;align-items:center;justify-ent:center;overflow:hidden}
+.card-art{width:100%;aspect-ratio:1/1;background:var(--tag-bg);display:flex;align-items:center;justify-content:center;overflow:hidden}
 .card-art img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.3s ease}
 .card:hover .card-art img{transform:scale(1.04)}
 .art-placeholder{display:flex;flex-direction:column;align-items:center;gap:0.5rem;color:var(--groove-light);padding:1rem;text-align:center}
@@ -61,7 +61,7 @@ select{cursor:pointer;padding-right:2rem;background-image:url("data:image/svg+xm
 .card-body{padding:0.9rem 1rem}
 .card-artist{font-size:0.7rem;font-weight:500;color:var(--muted);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:0.2rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .card-album{font-family:'DM Serif Display',serif;font-size:1rem;line-height:1.3;color:var(--ink);margin-bottom:0.55rem;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.card-meta{display:flex;align-items:center;justify-ent:space-between;gap:0.4rem}
+.card-meta{display:flex;align-items:center;justify-content:space-between;gap:0.4rem}
 .tag{font-size:0.68rem;font-family:'DM Mono',monospace;background:var(--tag-bg);color:var(--groove);padding:0.2rem 0.5rem;border-radius:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:120px}
 .card-year{font-size:0.72rem;color:var(--muted);font-family:'DM Mono',monospace;flex-shrink:0}
 
@@ -73,14 +73,14 @@ select{cursor:pointer;padding-right:2rem;background-image:url("data:image/svg+xm
 @keyframes spin{to{transform:rotate(360deg)}}
 
 /* MODAL */
-.modal-overlay{display:none;position:fixed;inset:0;background:rgba(28,24,20,0.78);z-index:200;align-items:center;justify-ent:center;padding:1.5rem;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(28,24,20,0.78);z-index:200;align-items:center;justify-content:center;padding:1.5rem;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
 .modal-overlay.open{display:flex}
 .modal{background:var(--surface);border-radius:16px;width:100%;max-width:620px;max-height:90vh;overflow-y:auto;position:relative;box-shadow:0 32px 80px rgba(28,24,20,0.28);animation:modalIn 0.22s ease}
 @keyframes modalIn{from{opacity:0;transform:scale(0.96) translateY(8px)}to{opacity:1;transform:scale(1) translateY(0)}}
 .modal-inner{display:grid;grid-template-columns:220px 1fr}
-.modal-art-col{background:var(--tag-bg);border-radius:16px 0 0 16px;overflow:hidden;display:flex;align-items:flex-start;justify-ent:center;position:sticky;top:0;align-self:start}
+.modal-art-col{background:var(--tag-bg);border-radius:16px 0 0 16px;overflow:hidden;display:flex;align-items:flex-start;justify-content:center;position:sticky;top:0;align-self:start}
 .modal-art-col img{width:100%;display:block;object-fit:cover}
-.modal-art-placeholder{display:flex;align-items:center;justify-ent:center;width:100%;height:220px;color:var(--groove-light)}
+.modal-art-placeholder{display:flex;align-items:center;justify-content:center;width:100%;height:220px;color:var(--groove-light)}
 .modal-art-placeholder .ti{font-size:60px}
 .modal-info-col{padding:1.5rem 1.6rem 1.75rem;overflow-y:auto}
 .modal-chips{display:flex;gap:0.4rem;margin-bottom:0.75rem;flex-wrap:wrap}
@@ -133,9 +133,9 @@ select{cursor:pointer;padding-right:2rem;background-image:url("data:image/svg+xm
       - Sign up at https://www.last.fm/api/account/create
       - Paste your key below for album bio auto-fill.
 ══════════════════════════════════════════════════════════════════════════ */
-const SHEET_CSV_URL  = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRbUvfFmkyWaYx0y5oQnC1gDSJ61W6iSPEq8hhnPtOi59lWjfAe5NRkHAZzl7t2rRB-AH1qo0qSXO-D/pub?gid=0&single=true&output=csv';
+const SHEET_CSV_URL  = 'YOUR_GOOGLE_SHEET_CSV_URL_HERE';
 const LASTFM_API_KEY = '350a3fcc217493055faabeb1240991f4';
-const DISCOGS_TOKEN = 'pOyVZNGcSuPsoTmGjMvrrGLkmWwJHQgexSXxSObx';
+const DISCOGS_TOKEN  = 'pOyVZNGcSuPsoTmGjMvrrGLkmWwJHQgexSXxSObx'; // ← same token used in the autofill script
 
 const SAMPLE_RECORDS = [
   {artist:"Miles Davis",      album:"Kind of Blue",                    genre:"Jazz",        year:1959, notes:"The definitive jazz record. Side A never gets old."},
@@ -159,7 +159,7 @@ const SAMPLE_RECORDS = [
 <header class="site-header">
   <div class="header-left">
     <h1>Cat <em>Jukebox</em></h1>
-    <div class="header-sub">An ecclectic collection of vinyl that unashamedly reveals our musicality</div>
+    <div class="header-sub">A personal vinyl collection</div>
   </div>
   <span class="count-pill" id="count-pill">— records</span>
 </header>
@@ -259,7 +259,7 @@ async function loadData() {
   init();
 }
 
-/* ── ALBUM ART ───────────────────────────────────────────────────────────── */
+/* ── ALBUM ART (Discogs — CORS friendly) ─────────────────────────────────── */
 async function fetchArt(artist, album) {
   const key = `${artist}__${album}`;
   if (artCache[key] !== undefined) return artCache[key];
@@ -268,7 +268,7 @@ async function fetchArt(artist, album) {
     const cleanArtist = artist.split('/')[0].split(' & ')[0].trim();
     const q = encodeURIComponent(cleanArtist + ' ' + album);
     const res = await fetch(
-      'https://api.discogs.com/database/search?q=' + q + '&type=release&per_page=3&token=' + pOyVZNGcSuPsoTmGjMvrrGLkmWwJHQgexSXxSObx,
+      'https://api.discogs.com/database/search?q=' + q + '&type=release&per_page=3&token=' + DISCOGS_TOKEN,
       {headers:{'User-Agent':'CatJukebox/1.0'}}
     );
     if (!res.ok) return null;
@@ -320,7 +320,7 @@ async function fetchBio(artist, album) {
   const key = `${artist}__${album}`;
   if (bioCache[key] !== undefined) return bioCache[key];
   bioCache[key] = null;
-  if (!LASTFM_API_KEY || LASTFM_API_KEY === 'YOUR_LASTFM_API_KEY_HERE') return null;
+  if (!LASTFM_API_KEY || LASTFM_API_KEY === '350a3fcc217493055faabeb1240991f4') return null;
   try {
     const url = `https://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=${LASTFM_API_KEY}&artist=${encodeURIComponent(artist)}&album=${encodeURIComponent(album)}&format=json`;
     const res = await fetch(url);
