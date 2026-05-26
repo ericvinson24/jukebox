@@ -268,7 +268,7 @@ async function fetchArt(artist, album) {
     const cleanArtist = artist.split('/')[0].split(' & ')[0].trim();
     const q = encodeURIComponent(cleanArtist + ' ' + album);
     const res = await fetch(
-      'https://api.discogs.com/database/search?q=' + q + '&type=release&per_page=3&token=' + DISCOGS_TOKEN,
+      'https://api.discogs.com/database/search?q=' + q + '&type=release&per_page=3&token=' + pOyVZNGcSuPsoTmGjMvrrGLkmWwJHQgexSXxSObx,
       {headers:{'User-Agent':'CatJukebox/1.0'}}
     );
     if (!res.ok) return null;
