@@ -133,7 +133,7 @@ select{cursor:pointer;padding-right:2rem;background-image:url("data:image/svg+xm
       - Sign up at https://www.last.fm/api/account/create
       - Paste your key below for album bio auto-fill.
 ══════════════════════════════════════════════════════════════════════════ */
-const SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRbUvfFmkyWaYx0y5oQnC1gDSJ61W6iSPEq8hhnPtOi59lWjfAe5NRkHAZzl7t2rRB-AH1qo0qSXO-D/pub?gid=0&single=true&output=csv';
+const SHEET_CSV_URL  = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRbUvfFmkyWaYx0y5oQnC1gDSJ61W6iSPEq8hhnPtOi59lWjfAe5NRkHAZzl7t2rRB-AH1qo0qSXO-D/pub?gid=0&single=true&output=csv';
 const LASTFM_API_KEY = '350a3fcc217493055faabeb1240991f4';
 const DISCOGS_TOKEN  = 'pOyVZNGcSuPsoTmGjMvrrGLkmWwJHQgexSXxSObx'; // ← same token used in the autofill script
 
@@ -248,7 +248,7 @@ function parseCSV(text) {
 
 /* ── DATA LOAD ───────────────────────────────────────────────────────────── */
 async function loadData() {
-  if (SHEET_CSV_URL && SHEET_CSV_URL !== 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRbUvfFmkyWaYx0y5oQnC1gDSJ61W6iSPEq8hhnPtOi59lWjfAe5NRkHAZzl7t2rRB-AH1qo0qSXO-D/pub?gid=0&single=true&output=csv') {
+  if (SHEET_CSV_URL && SHEET_CSV_URL !== 'YOUR_GOOGLE_SHEET_CSV_URL_HERE') {
     try {
       const res = await fetch(SHEET_CSV_URL);
       if (!res.ok) throw new Error();
@@ -320,7 +320,7 @@ async function fetchBio(artist, album) {
   const key = `${artist}__${album}`;
   if (bioCache[key] !== undefined) return bioCache[key];
   bioCache[key] = null;
-  if (!LASTFM_API_KEY || LASTFM_API_KEY === '350a3fcc217493055faabeb1240991f4') return null;
+  if (!LASTFM_API_KEY || LASTFM_API_KEY === 'YOUR_LASTFM_API_KEY_HERE') return null;
   try {
     const url = `https://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=${LASTFM_API_KEY}&artist=${encodeURIComponent(artist)}&album=${encodeURIComponent(album)}&format=json`;
     const res = await fetch(url);
