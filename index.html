@@ -259,7 +259,7 @@ async function loadData() {
   init();
 }
 
-/* ── ALBUM ART (Discogs — CORS friendly) ─────────────────────────────────── */
+/* ── ALBUM ART (iTunes Search API — no auth, CORS friendly) ─────────────── */
 async function fetchArt(artist, album) {
   const key = `${artist}__${album}`;
   if (artCache[key] !== undefined) return artCache[key];
@@ -268,16 +268,17 @@ async function fetchArt(artist, album) {
     const cleanArtist = artist.split('/')[0].split(' & ')[0].trim();
     const q = encodeURIComponent(cleanArtist + ' ' + album);
     const res = await fetch(
-      'https://api.discogs.com/database/search?q=' + q + '&type=release&per_page=3&token=' + DISCOGS_TOKEN,
-      {headers:{'User-Agent':'CatJukebox/1.0'}}
+      'https://itunes.apple.com/search?term=' + q + '&media=music&entity=album&limit=3'
     );
     if (!res.ok) return null;
     const data = await res.json();
     const results = data.results || [];
     for (const r of results) {
-      if (r.cover_image && !r.cover_image.includes('spacer')) {
-        artCache[key] = r.cover_image;
-        return r.cover_image;
+      if (r.artworkUrl100) {
+        // Upgrade to higher resolution
+        const url = r.artworkUrl100.replace('100x100', '600x600');
+        artCache[key] = url;
+        return url;
       }
     }
   } catch {}
