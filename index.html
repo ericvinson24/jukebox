@@ -155,74 +155,7 @@ const SAMPLE_RECORDS = [
   {artist:"Radiohead",        album:"OK Computer",                     genre:"Alternative", year:1997, notes:"Felt prophetic then. Feels more so now."},
   {artist:"D'Angelo",         album:"Voodoo",                          genre:"Soul",        year:2000, notes:"One of the great neo-soul statements. Lay it down."}
 ];
-</script>
 
-<header class="site-header">
-  <div class="header-left">
-    <h1>Cat <em>Jukebox</em></h1>
-    <div class="header-sub">A personal vinyl collection</div>
-  </div>
-  <span class="count-pill" id="count-pill">— records</span>
-</header>
-
-<div class="random-strip">
-  <span class="random-label"><i class="ti ti-dice-3" aria-hidden="true"></i> Randomizer</span>
-  <select id="random-genre" aria-label="Random genre filter"><option value="">Any genre</option></select>
-  <button class="btn btn-accent" id="random-btn">
-    <i class="ti ti-arrows-shuffle" aria-hidden="true"></i> Surprise me
-  </button>
-</div>
-
-<div class="controls">
-  <div class="search-wrap">
-    <i class="ti ti-search" aria-hidden="true"></i>
-    <input type="text" id="search" placeholder="Search artist or album…" aria-label="Search records">
-  </div>
-  <select id="genre-filter" aria-label="Filter by genre"><option value="">All genres</option></select>
-  <select id="sort-by" aria-label="Sort records">
-    <option value="artist">Artist A–Z</option>
-    <option value="album">Album A–Z</option>
-    <option value="year-asc">Year: oldest first</option>
-    <option value="year-desc">Year: newest first</option>
-  </select>
-  <button class="btn" id="clear-btn"><i class="ti ti-x" aria-hidden="true"></i> Clear</button>
-</div>
-
-<main class="grid-wrap" aria-label="Vinyl collection">
-  <div id="loading-state" class="loading-state">
-    <i class="ti ti-loader" aria-hidden="true"></i>
-    <p>Loading the collection…</p>
-  </div>
-  <div class="grid" id="grid" role="list"></div>
-  <div class="empty-state" id="empty-state" role="status">
-    <i class="ti ti-vinyl" aria-hidden="true"></i>
-    <p>No records match your search.</p>
-    <small>Try clearing the filters above.</small>
-  </div>
-</main>
-
-<div class="modal-overlay" id="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title-el">
-  <div class="modal" id="modal">
-    <button class="close-btn" id="close-modal" aria-label="Close"><i class="ti ti-x"></i></button>
-    <div class="modal-inner">
-      <div class="modal-art-col" id="modal-art-col">
-        <div class="modal-art-placeholder"><i class="ti ti-vinyl" aria-hidden="true"></i></div>
-      </div>
-      <div class="modal-info-col">
-        <div class="modal-chips" id="modal-chips"></div>
-        <div class="modal-artist" id="modal-artist-el"></div>
-        <div class="modal-title"  id="modal-title-el"></div>
-        <div class="modal-desc"   id="modal-desc"></div>
-        <div class="section-label">Track listing</div>
-        <div id="tracklist-wrap"></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<footer class="site-footer">◎ Built with love &amp; wax</footer>
-
-<script>
 let ALL_RECORDS = [];
 const artCache   = {};
 const bioCache   = {};
